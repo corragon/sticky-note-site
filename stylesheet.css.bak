@@ -1,0 +1,16 @@
+.basic-note {
+    background-color: #123456;
+    height: 200px;
+    width: 200px;
+}
+
+.sticky-title {
+    background-color: #FFFFFF20;
+    margin: 10px;
+    color: #FFFFFF;
+}
+
+.sticky-body {
+    margin: 10px;
+    background-color: #FFFFFF20;
+}
