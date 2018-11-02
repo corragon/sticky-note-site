@@ -28,7 +28,8 @@ var app = new Vue({
 
 
 interact('.draggable').draggable({
-        onmove: dragMoveListener
+        onmove: dragMoveListener,
+        ignoreFrom: 'textarea'
     }).resizable({
         // resize from all edges and corners
         edges: { left: true, right: true, bottom: true, top: true },
