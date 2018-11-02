@@ -29,6 +29,7 @@ input {
     border: none;
     resize: none;
     padding: 2px;
+    white-space: pre-wrap;
 }
 
 #input {
