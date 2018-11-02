@@ -18,13 +18,11 @@
         <div class="sticky-title">
             <h1>The Title Doofus!</h1>
         </div>
-        <div class="sticky-body">
-            Yeah, this note has some text. What you gonna do about it?
-        </div>
+        <div class="sticky-body">Yeah, this note has some text. What you gonna do about it?</div>
         <div id="app">
-            <p class="sticky-body" v-if="editing">{{ message }}</p>
-            <input class="sticky-body" v-if="!editing" v-model="message">
-            <button v-on:click="edit">Edit Message</button>
+            <p class="sticky-body" v-if="editing" v-on:click="edit">{{ message }}</p>
+            <input id="input" class="sticky-body" v-if="!editing" v-model="message">
+            <textarea name="Text1" class="sticky-body" v-if="!editing" v-model="message" ref="textbox" v-on:blur="edit" rows="5"></textarea>
         </div>
     </div>
 	<script src="index.js"></script>
