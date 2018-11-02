@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<title>interact tests</title>
 	
-	<link rel="stylesheet" media="screen" href="stylesheet.css">
+	<link rel="stylesheet" media="screen" href="normalize.css">
+    <link rel="stylesheet" media="screen" href="stylesheet.css">
     
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     
@@ -21,9 +22,9 @@
             Yeah, this note has some text. What you gonna do about it?
         </div>
         <div id="app">
-            <p v-if="editing">{{ message }}</p>
-            <p><input v-if="!editing" v-model="message"></p>
-            <br/>
+            <p class="sticky-body" v-if="editing">{{ message }}</p>
+            <input id="input" class="sticky-body" v-if="!editing" v-model="message">
+            <textarea name="Text1" class="sticky-body" v-if="!editing" v-model="message" cols="40" rows="5"></textarea>
             <button v-on:click="edit">Edit Message</button>
         </div>
     </div>

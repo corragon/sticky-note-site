@@ -1,7 +1,13 @@
+input {
+    border: none;
+    font-family: serif;
+    margin: 0px;
+}
+
 .basic-note {
     background-color: #123456;
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 400px;
 }
 
 .sticky-title {
@@ -13,4 +19,10 @@
 .sticky-body {
     margin: 10px;
     background-color: #FFFFFF20;
+    color: #FFFFFF;
+    display: block;
+}
+
+.input {
+    display: none;
 }
