@@ -1,12 +1,10 @@
+h1 {
+    margin: 0px;
+}
+
 #app {
     display: flex;
     flex-direction: column;
-}
-
-input {
-    border: none;
-    font-family: serif;
-    margin: 0px;
 }
 
 .basic-note {
@@ -30,8 +28,4 @@ input {
     resize: none;
     padding: 2px;
     white-space: pre-wrap;
-}
-
-#input {
-    display: none;
 }

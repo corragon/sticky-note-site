@@ -1,3 +1,8 @@
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
 input {
     border: none;
     font-family: serif;
@@ -21,8 +26,12 @@ input {
     background-color: #FFFFFF20;
     color: #FFFFFF;
     display: block;
+    border: none;
+    resize: none;
+    padding: 2px;
+    white-space: pre-wrap;
 }
 
-.input {
+#input {
     display: none;
 }

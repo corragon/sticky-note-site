@@ -20,7 +20,6 @@
         </div>
         <div id="app">
             <p class="sticky-body" v-if="editing" v-on:click="edit">{{ message }}</p>
-            <input id="input" class="sticky-body" v-if="!editing" v-model="message">
             <textarea name="Text1" class="sticky-body" v-if="!editing" v-model="message" ref="textbox" v-on:blur="edit" rows="5"></textarea>
         </div>
     </div>

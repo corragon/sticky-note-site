@@ -18,7 +18,6 @@
         <div class="sticky-title">
             <h1>The Title Doofus!</h1>
         </div>
-        <div class="sticky-body">Yeah, this note has some text. What you gonna do about it?</div>
         <div id="app">
             <p class="sticky-body" v-if="editing" v-on:click="edit">{{ message }}</p>
             <input id="input" class="sticky-body" v-if="!editing" v-model="message">
