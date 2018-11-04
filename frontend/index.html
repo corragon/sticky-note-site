@@ -14,13 +14,25 @@
 </head>
 
 <body>
-<div class="draggable basic-note">
-  <div class="sticky-title">
-    <h1>The Title Doofus!</h1>
+<div  id="app" class="draggable basic-note">
+  <div class="flex-wrapper">
+    <h1 class="sticky-title" v-if="editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
+    <input name="Title1"
+              class="sticky-title"
+              v-if="!editTitle" 
+              v-model="title" 
+              ref="textbox" 
+              v-on:blur="titleEditHandler"
+              rows="5"></input>
   </div>
-  <div id="app">
-    <p class="sticky-body" v-if="editing" v-on:click="edit">{{ message }}</p>
-    <textarea name="Text1" class="sticky-body" v-if="!editing" v-model="message" ref="textbox" v-on:blur="edit"
+  <div class="flex-wrapper">
+    <p class="sticky-body" v-if="editBody" v-on:click="bodyEditHandler">{{ body }}</p>
+    <textarea name="Text1"
+              class="sticky-body" 
+              v-if="!editBody" 
+              v-model="body" 
+              ref="textbox" 
+              v-on:blur="bodyEditHandler"
               rows="5"></textarea>
   </div>
 </div>

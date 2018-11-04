@@ -2,7 +2,7 @@ h1 {
   margin: 0px;
 }
 
-#app {
+.flex-wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -14,9 +14,17 @@ h1 {
 }
 
 .sticky-title {
-  background-color: #FFFFFF20;
   margin: 10px;
+  background-color: #FFFFFF20;
   color: #FFFFFF;
+  font-size: 2em;
+  font-family: serif;
+  font-weight: bold;
+  display: block;
+  border: none;
+  resize: none;
+  padding: 2px;
+  white-space: pre-wrap;
 }
 
 .sticky-body {

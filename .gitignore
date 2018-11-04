@@ -64,4 +64,4 @@ typings/
 .idea/
 
 # Notepad++ backup files
-.bak
+*.bak

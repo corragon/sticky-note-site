@@ -9,17 +9,25 @@ var sticky = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue.js!',
-    editing: true
+    title: 'Title',
+    body: 'Hello Vue.js!',
+    editTitle: true,
+    editBody: true
   },
   methods: {
-    edit: function (e) {
+    titleEditHandler: function (e) {
       console.log(e);
-      this.editing = !this.editing;
+      this.editTitle = !this.editTitle;
+      this.$nextTick(function () {
+        this.$refs.textbox.focus();
+      }); 
+    },
+    bodyEditHandler: function (e) {
+      console.log(e);
+      this.editBody = !this.editBody;
       this.$nextTick(function () {
         this.$refs.textbox.focus();
       });
-
     },
   }
 });
