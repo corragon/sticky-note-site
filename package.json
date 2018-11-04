@@ -1,0 +1,33 @@
+{
+  "name": "sticky-note-site",
+  "version": "0.1.0",
+  "description": "Website for collaborative sticky note editing",
+  "contributors": [
+    "Thomas Yarnall",
+    "Joshua Anderson",
+    "Rachelle Yarnall"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "run-p install:api install:web",
+    "install:api": "cd frontend && npm install",
+    "install:web": "cd backend && npm install",
+
+    "start": "run-p start:api start:web",
+    "start:api": "npm run start --prefix backend",
+    "start:web": "npm run start --prefix frontend",
+
+    "build": "run-p build:api build:web",
+    "build:api": "cd backend && npm run build && cd ..",
+    "build:web": "cd frontend && npm run build && cd ..",
+
+    "prestart:docker": "npm run build",
+    "start:docker": "docker-compose -f docker/docker-compose.yml up -d --build",
+    "poststart:docker": "opn http://localhost:8000/",
+    "stop:docker": "docker-compose -f docker/docker-compose.yml down"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2",
+    "opn-cli": "^3.1.0"
+  }
+}

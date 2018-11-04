@@ -1,0 +1,33 @@
+{
+  "name": "sticky-note-site",
+  "version": "0.1.0",
+  "description": "Website for collaborative sticky note editing",
+  "contributors": [
+    "Thomas Yarnall",
+    "Joshua Anderson",
+    "Rachelle Yarnall"
+  ],
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corragon/sticky-note-site.git"
+  },
+  "keywords": [
+    "sticky",
+    "notes",
+    "collaboration",
+    "productivity"
+  ],
+  "bugs": {
+    "url": "https://github.com/corragon/sticky-note-site/issues"
+  },
+  "homepage": "https://github.com/corragon/sticky-note-site#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {}
+}
