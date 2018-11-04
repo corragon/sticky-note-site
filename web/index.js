@@ -13,7 +13,8 @@ var app = new Vue({
     editing: true
   },
   methods: {
-    edit: function () {
+    edit: function (e) {
+      console.log(e);
       this.editing = !this.editing;
       this.$nextTick(function () {
         this.$refs.textbox.focus();
