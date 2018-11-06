@@ -1,19 +1,19 @@
 <template>
   <div id="app" class="draggable basic-note">
     <div class="flex-wrapper">
-      <h1 class="sticky-title" v-if="editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
+      <h1 class="sticky-title" v-if="!editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
       <input name="Title1"
              class="sticky-title"
-             v-if="!editTitle"
+             v-if="editTitle"
              v-model="title"
              ref="textbox"
              v-on:blur="titleEditHandler"/>
     </div>
     <div class="flex-wrapper">
-      <p class="sticky-body" v-if="editBody" v-on:click="bodyEditHandler">{{ body }}</p>
+      <p class="sticky-body" v-if="!editBody" v-on:click="bodyEditHandler">{{ body }}</p>
       <textarea name="Text1"
                 class="sticky-body"
-                v-if="!editBody"
+                v-if="editBody"
                 v-model="body"
                 ref="textbox"
                 v-on:blur="bodyEditHandler"
@@ -40,7 +40,7 @@
         console.log(e);
         this.editTitle = !this.editTitle;
         this.$nextTick(function () {
-          if (!this.editTitle)
+          if (this.editTitle)
             this.$refs.textbox.focus();
         });
       },
@@ -48,7 +48,7 @@
         console.log(e);
         this.editBody = !this.editBody;
         this.$nextTick(function () {
-          if (!this.editBody)
+          if (this.editBody)
             this.$refs.textbox.focus();
         });
       },
