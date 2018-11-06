@@ -18,12 +18,11 @@
   <div class="flex-wrapper">
     <h1 class="sticky-title" v-if="editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
     <input name="Title1"
-              class="sticky-title"
-              v-if="!editTitle" 
-              v-model="title" 
-              ref="textbox" 
-              v-on:blur="titleEditHandler"
-              rows="5"></input>
+           class="sticky-title"
+           v-if="!editTitle"
+           v-model="title"
+           ref="textbox"
+           v-on:blur="titleEditHandler"/>
   </div>
   <div class="flex-wrapper">
     <p class="sticky-body" v-if="editBody" v-on:click="bodyEditHandler">{{ body }}</p>
