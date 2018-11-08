@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="draggable basic-note">
+  <div class="draggable basic-note">
     <div class="flex-wrapper">
       <h1 class="sticky-title" v-if="!editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
       <input name="Title1"
