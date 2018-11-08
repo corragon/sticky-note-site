@@ -125,6 +125,9 @@
     background-color: #123456;
     height: 300px;
     width: 400px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
   }
 
   .sticky-title {
