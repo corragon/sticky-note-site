@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/corragon/sticky-note-site#readme",
   "dependencies": {
+    "aws-sdk": "^2.351.0",
     "express": "^4.16.4"
   },
   "devDependencies": {
