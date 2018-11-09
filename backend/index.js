@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+import { generateToken }  from './utils';
+
 const app = express();
 
 app.use(bodyParser.urlencoded({
@@ -7,8 +9,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-store = (function(){
-  tokens = {};
+const store = (function(){
+  let tokens = {};
   return {
     get: function(token) {
       return tokens[token] || [];
@@ -19,6 +21,14 @@ store = (function(){
   }
 })();
 store.set('1234', {blah:'yay'});
+
+
+app.get('/newToken', (req, res) => {
+  res.status(200);
+  res.send({
+    data: generateToken(8)
+  });
+});
 
 app.get('/:token', (req, res) => {
   console.log("Getting token with ", req.params.token);
@@ -32,7 +42,8 @@ app.post('/:token', (req, res) => {
     res.send("Error: Requires data on body!");
   }
   console.log(req.params.token, req.body.data);
-  res.send(store.set(req.params.token, req.body.data));
+  store.set(req.params.token, req.body.data);
+  res.status(200);
 });
 
 app.listen(3000, () => console.log('Express app listening on port 3000'));
