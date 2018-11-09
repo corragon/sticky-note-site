@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-import { generateToken }  from './utils';
+import { generateToken } from './utils';
 
 const app = express();
 
@@ -9,18 +9,18 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-const store = (function(){
+const store = (function () {
   let tokens = {};
   return {
-    get: function(token) {
+    get: function (token) {
       return tokens[token] || [];
     },
-    set: function(token, data) {
+    set: function (token, data) {
       tokens[token] = data;
     }
   }
 })();
-store.set('1234', {blah:'yay'});
+store.set('1234', { blah: 'yay' });
 
 
 app.get('/newToken', (req, res) => {
