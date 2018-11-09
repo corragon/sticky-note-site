@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon --exec babel-node index.js"
   },
   "repository": {
     "type": "git",
@@ -29,8 +29,11 @@
   "homepage": "https://github.com/corragon/sticky-note-site#readme",
   "dependencies": {
     "aws-sdk": "^2.351.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"
