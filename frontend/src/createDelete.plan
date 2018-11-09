@@ -1,0 +1,7 @@
+Steps for adding create delete to sticky-note
+
+create array to hold stickys
+create sticky object template
+add sticky object bindings to sticky component
+use v-for to create a template that creates DOM elements for each entry in the array
+write add/remove functions and bind to appropriate actions

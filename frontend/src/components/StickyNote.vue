@@ -37,7 +37,7 @@
     },
     methods: {
       titleEditHandler: function (e) {
-        console.log(e);
+        //console.log(e);
         this.editTitle = !this.editTitle;
         this.$nextTick(function () {
           if (this.editTitle)
@@ -45,7 +45,7 @@
         });
       },
       bodyEditHandler: function (e) {
-        console.log(e);
+        //console.log(e);
         this.editBody = !this.editBody;
         this.$nextTick(function () {
           if (this.editBody)

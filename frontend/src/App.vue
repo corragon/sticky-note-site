@@ -1,20 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="This is some kind of message passed by prop"/>
-    <StickyNote></StickyNote>
+    <button type:="button" v-on:click="addSticky">Add Sticky</button>
+    <template v-for="sticky in stickys">
+      <StickyNote :key="sticky.id"></StickyNote>
+    </template>
   </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue'
   import StickyNote from './components/StickyNote';
 
   export default {
     name: 'app',
+    data() {
+      return {
+        stickys: [{id: '1'},{id: '2'},{id: '3'}]  
+      }
+    },
     components: {
       StickyNote,
-      HelloWorld
+    },
+    methods: {
+      addSticky: function () {
+        this.stickys.push({id: ''+(this.stickys.length + 1)});
+      }
     }
   }
 </script>
