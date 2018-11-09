@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "a608943f-c485-47bc-afdb-042436be87da",
+		"name": "Sticky Note Site",
+		"description": "Example REST calls for the simple Sticky Note Site project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{backend}}/newToken",
+					"host": [
+						"{{backend}}"
+					],
+					"path": [
+						"newToken"
+					]
+				},
+				"description": "Request a unique token from the server to identify a new sticky note page"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Data with Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{backend}}/tokens/1234",
+					"host": [
+						"{{backend}}"
+					],
+					"path": [
+						"tokens",
+						"1234"
+					]
+				},
+				"description": "Request the sticky note data associated with a token"
+			},
+			"response": []
+		},
+		{
+			"name": "Set Data with Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"data\": {\n\t\t\"blah\":\"what?\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{backend}}/tokens/1234",
+					"host": [
+						"{{backend}}"
+					],
+					"path": [
+						"tokens",
+						"1234"
+					]
+				},
+				"description": "Send sticky note data associated with a token to be saved"
+			},
+			"response": []
+		}
+	]
+}
