@@ -1,0 +1,11 @@
+export const store = (function () {
+  let tokens = {};
+  return {
+    get: function (token) {
+      return tokens[token] || [];
+    },
+    set: function (token, data) {
+      tokens[token] = data;
+    }
+  }
+})();
