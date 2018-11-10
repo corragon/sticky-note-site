@@ -1,5 +1,5 @@
 <template>
-  <div class="draggable basic-note">
+  <div class="draggable basic-note" v-bind:style="styleObject">
     <div class="flex-wrapper">
       <h1 class="sticky-title" v-if="!editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
       <input name="Title1"
@@ -32,9 +32,19 @@
         title: 'Title',
         body: 'Hello Vue.js!',
         editTitle: false,
-        editBody: false
+        editBody: false,
+        styleObject: {
+          top: '0px',
+          left: '0px',
+          height: '200px',
+          width: '200px',
+          backgroundColor: '#654321'
+        }
       }
     },
+    props: [
+      'test'
+    ],
     methods: {
       titleEditHandler: function (e) {
         //console.log(e);
