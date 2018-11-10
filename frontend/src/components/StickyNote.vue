@@ -122,12 +122,15 @@
   }
 
   .basic-note {
-    background-color: #123456;
+    background-color: #215386;
     height: 300px;
     width: 400px;
     position: absolute;
     top: 100px;
     left: 100px;
+    -webkit-box-shadow: 5px 5px 7px 0px rgba(33, 33, 33, 0.7);
+    -moz-box-shadow: 5px 5px 7px 0px rgba(33, 33, 33, 0.7);
+    box-shadow: 5px 5px 7px 0px rgba(33, 33, 33, 0.7);
   }
 
   .sticky-title {
