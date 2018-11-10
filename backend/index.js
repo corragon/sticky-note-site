@@ -25,6 +25,12 @@ app.get('/tokens/:token', (req, res) => {
   res.send(store.get(req.params.token));
 });
 
+app.get('/tokens/:token/changed', (req, res) => {
+  console.log(`Checking if data on token ${req.params.token} has changed`);
+  res.status(501);
+  res.send();
+});
+
 app.post('/tokens/:token', (req, res) => {
   if (!req.body.data) {
     res.status(404);
