@@ -15,6 +15,7 @@
 
 <script>
   import StickyNote from './components/StickyNote';
+  import Vue from 'vue';
 
   export default {
     name: 'app',
@@ -70,9 +71,9 @@
           }
         });*/
         
-        var stickyId = ''+(Object.keys(this.stickys).length + 1)
+        var stickyId = ''+(Object.keys(this.stickys).length + 1);
         
-        this.stickys[stickyId] = {
+        Vue.set(this.stickys, stickyId, {
           id: stickyId,
           title: 'Title',
           body: 'Body',
@@ -83,7 +84,7 @@
             width: '200px',
             backgroundColor: '#654321'
           }
-        };
+        });
       }
     }
   }
