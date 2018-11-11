@@ -26,9 +26,10 @@ app.get('/tokens/:token', (req, res) => {
 });
 
 app.get('/tokens/:token/changed', (req, res) => {
-  console.log(`Checking if data on token ${req.params.token} has changed`);
-  res.status(501);
-  res.send();
+  let { token } = req.params;
+  let { time } = req.query;
+  res.status(200);
+  res.send(store.hasChanges(token, time));
 });
 
 app.post('/tokens/:token', (req, res) => {
@@ -36,7 +37,7 @@ app.post('/tokens/:token', (req, res) => {
     res.status(404);
     res.send("Error: Requires data on body!");
   }
-  console.log(req.params.token, req.body.data);
+  console.log(`POST on /tokens/${req.params.token}`, req.body.data);
   store.set(req.params.token, req.body.data);
   res.status(200);
   res.send();
