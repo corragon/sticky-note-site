@@ -29,21 +29,17 @@
     name: "StickyNote",
     data() {
       return {
-        title: 'Title',
-        body: 'Hello Vue.js!',
+        /*title: 'Title',
+        body: 'Hello Vue.js!',*/
         editTitle: false,
         editBody: false,
-        styleObject: {
-          top: '0px',
-          left: '0px',
-          height: '200px',
-          width: '200px',
-          backgroundColor: '#654321'
-        }
       }
     },
     props: [
-      'test'
+      'id',
+      'title',
+      'body',
+      'styleObject'
     ],
     methods: {
       titleEditHandler: function (e) {

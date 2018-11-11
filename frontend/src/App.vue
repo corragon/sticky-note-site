@@ -2,20 +2,50 @@
   <div id="app">
     <button type:="button" v-on:click="addSticky">Add Sticky</button>
     <template v-for="sticky in stickys">
-      <StickyNote test="blah" :key="sticky.id"></StickyNote>
+      <StickyNote 
+        v-bind:id="sticky.id"
+        v-bind:title="sticky.title" 
+        v-bind:body="sticky.body"
+        v-bind:styleObject="sticky.styleObject"
+        :key="sticky.id"
+      ></StickyNote>
     </template>
   </div>
 </template>
 
 <script>
-  import Vue from 'vue'
   import StickyNote from './components/StickyNote';
 
   export default {
     name: 'app',
     data() {
       return {
-        stickys: []  
+        stickys: {
+            sticky1: {
+              id: '1',
+              title: 'Title',
+              body: 'Body',
+              styleObject: {
+                top: '0px',
+                left: '0px',
+                height: '200px',
+                width: '200px',
+                backgroundColor: '#654321'
+              }
+            },
+            sticky2: {
+              id: '2',
+              title: 'Title',
+              body: 'Body',
+              styleObject: {
+                top: '0px',
+                left: '0px',
+                height: '200px',
+                width: '200px',
+                backgroundColor: '#654321'
+              }
+            }
+        }
       }
     },
     components: {
@@ -23,11 +53,37 @@
     },
     methods: {
       addSticky: function () {
-        const r = () => Math.floor(256 * Math.random());
+        //const r = () => Math.floor(256 * Math.random());
 
-        this.stickys.push({id: ''+(this.stickys.length + 1)});
-        var currentSticky = Vue.component();//this.stickys[this.stickys.length - 1]);
-        currentSticky.styleObject.backgroundColor = `rgb(${r()}, ${r()}, ${r()})`
+        /*this.stickys.push({
+          stickyObject: {
+            id: ''+(this.stickys.length + 1),
+            title: 'Title',
+            body: 'Body',
+            styleObject: {
+              top: '0px',
+              left: '0px',
+              height: '200px',
+              width: '200px',
+              backgroundColor: '#654321'
+            }
+          }
+        });*/
+        
+        var stickyId = ''+(Object.keys(this.stickys).length + 1)
+        
+        this.stickys[stickyId] = {
+          id: stickyId,
+          title: 'Title',
+          body: 'Body',
+          styleObject: {
+            top: '0px',
+            left: '0px',
+            height: '200px',
+            width: '200px',
+            backgroundColor: '#654321'
+          }
+        };
       }
     }
   }
