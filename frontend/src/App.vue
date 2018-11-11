@@ -8,6 +8,7 @@
         v-bind:body="sticky.body"
         v-bind:styleObject="sticky.styleObject"
         :key="sticky.id"
+        v-on:update-app="updateApp"
       ></StickyNote>
     </template>
   </div>
@@ -21,32 +22,7 @@
     name: 'app',
     data() {
       return {
-        stickys: {
-            sticky1: {
-              id: '1',
-              title: 'Title',
-              body: 'Body',
-              styleObject: {
-                top: '0px',
-                left: '0px',
-                height: '200px',
-                width: '200px',
-                backgroundColor: '#654321'
-              }
-            },
-            sticky2: {
-              id: '2',
-              title: 'Title',
-              body: 'Body',
-              styleObject: {
-                top: '0px',
-                left: '0px',
-                height: '200px',
-                width: '200px',
-                backgroundColor: '#654321'
-              }
-            }
-        }
+        stickys: {}
       }
     },
     components: {
@@ -55,22 +31,12 @@
     methods: {
       addSticky: function () {
         //const r = () => Math.floor(256 * Math.random());
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
 
-        /*this.stickys.push({
-          stickyObject: {
-            id: ''+(this.stickys.length + 1),
-            title: 'Title',
-            body: 'Body',
-            styleObject: {
-              top: '0px',
-              left: '0px',
-              height: '200px',
-              width: '200px',
-              backgroundColor: '#654321'
-            }
-          }
-        });*/
-        
         var stickyId = ''+(Object.keys(this.stickys).length + 1);
         
         Vue.set(this.stickys, stickyId, {
@@ -82,9 +48,18 @@
             left: '0px',
             height: '200px',
             width: '200px',
-            backgroundColor: '#654321'
+            backgroundColor: color
           }
         });
+      },
+      updateApp: function (data) {
+        Vue.set(this.stickys, data.id, {
+          id: data.id,
+          title: data.title,
+          body: data.body,
+          styleObject: data.styleObject
+        });
+        console.log('app data updated')
       }
     }
   }

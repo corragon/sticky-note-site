@@ -6,4 +6,4 @@ DONE: add sticky object bindings to sticky component
 DONE: use v-for to create a template that creates DOM elements for each entry in the array
 TODO: write add/remove functions and bind to appropriate actions
 
-TODO: add events and listeners to update stickys[] with data from child props
+DONE: add events and listeners to update stickys[] with data from child props

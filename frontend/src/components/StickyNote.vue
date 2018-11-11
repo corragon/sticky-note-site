@@ -1,20 +1,20 @@
 <template>
-  <div class="draggable basic-note" v-bind:style="styleObject">
+  <div class="draggable basic-note" v-bind:style="dataStyleObject">
     <div class="flex-wrapper">
-      <h1 class="sticky-title" v-if="!editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
+      <h1 class="sticky-title" v-if="!editTitle" v-on:click="titleEditHandler">{{ dataTitle }}</h1>
       <input name="Title1"
              class="sticky-title"
              v-if="editTitle"
-             v-model="title"
+             v-model="dataTitle"
              ref="textbox"
              v-on:blur="titleEditHandler"/>
     </div>
     <div class="flex-wrapper">
-      <p class="sticky-body" v-if="!editBody" v-on:click="bodyEditHandler">{{ body }}</p>
+      <p class="sticky-body" v-if="!editBody" v-on:click="bodyEditHandler">{{ dataBody }}</p>
       <textarea name="Text1"
                 class="sticky-body"
                 v-if="editBody"
-                v-model="body"
+                v-model="dataBody"
                 ref="textbox"
                 v-on:blur="bodyEditHandler"
                 rows="5"></textarea>
@@ -29,10 +29,11 @@
     name: "StickyNote",
     data() {
       return {
-        /*title: 'Title',
-        body: 'Hello Vue.js!',*/
         editTitle: false,
         editBody: false,
+        dataTitle: this.title,
+        dataBody: this.body,
+        dataStyleObject: this.styleObject
       }
     },
     props: [
@@ -42,22 +43,30 @@
       'styleObject'
     ],
     methods: {
-      titleEditHandler: function (e) {
-        //console.log(e);
+      titleEditHandler: function () {
         this.editTitle = !this.editTitle;
         this.$nextTick(function () {
           if (this.editTitle)
             this.$refs.textbox.focus();
         });
+        this.updateApp();
       },
-      bodyEditHandler: function (e) {
-        //console.log(e);
+      bodyEditHandler: function () {
         this.editBody = !this.editBody;
         this.$nextTick(function () {
           if (this.editBody)
             this.$refs.textbox.focus();
         });
+        this.updateApp();
       },
+      updateApp: function() {
+        this.$emit('update-app',{
+          id: this.id,
+          title: this.dataTitle,
+          body: this.dataBody,
+          styleObject: this.dataStyleObject
+        })
+      }
     }
   }
 
