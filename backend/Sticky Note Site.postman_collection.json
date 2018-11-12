@@ -52,6 +52,37 @@
 			"response": []
 		},
 		{
+			"name": "Get Token Data Changed Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{backend}}/tokens/1234/changed/?time=2018-11-11T23:15:44.532Z",
+					"host": [
+						"{{backend}}"
+					],
+					"path": [
+						"tokens",
+						"1234",
+						"changed",
+						""
+					],
+					"query": [
+						{
+							"key": "time",
+							"value": "2018-11-11T23:15:44.532Z"
+						}
+					]
+				},
+				"description": "Request the sticky note data associated with a token"
+			},
+			"response": []
+		},
+		{
 			"name": "Set Data with Token",
 			"request": {
 				"method": "POST",
