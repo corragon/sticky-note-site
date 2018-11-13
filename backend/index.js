@@ -20,16 +20,10 @@ app.get('/newToken', (req, res) => {
 });
 
 app.get('/tokens/:token', (req, res) => {
+  let { since } = req.query;
   console.log("Getting token with ", req.params.token);
   res.status(200);
-  res.send(store.get(req.params.token));
-});
-
-app.get('/tokens/:token/changed', (req, res) => {
-  let { token } = req.params;
-  let { time } = req.query;
-  res.status(200);
-  res.send(store.hasChanges(token, time));
+  res.send(store.get(req.params.token, since));
 });
 
 app.post('/tokens/:token', (req, res) => {

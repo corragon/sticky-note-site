@@ -3,8 +3,12 @@ import moment from 'moment';
 export const store = (function () {
   let tokens = {};
   return {
-    get: function (token) {
-      return tokens[token] || [];
+    get: function (token, since) {
+      if (since && !this.hasChanges(token, since)) {
+        return {};
+      } else {
+        return tokens[token] || [];
+      }
     },
     set: function (token, data) {
       data.lastChangedAt = moment();
