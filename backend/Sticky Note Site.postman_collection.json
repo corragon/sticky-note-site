@@ -52,7 +52,7 @@
 			"response": []
 		},
 		{
-			"name": "Get Token Data Changed Status",
+			"name": "Get Token Data changes since time",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -61,19 +61,18 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{backend}}/tokens/1234/changed/?time=2018-11-11T23:15:44.532Z",
+					"raw": "{{backend}}/tokens/1234/?since=2018-11-11T23:15:44.532Z",
 					"host": [
 						"{{backend}}"
 					],
 					"path": [
 						"tokens",
 						"1234",
-						"changed",
 						""
 					],
 					"query": [
 						{
-							"key": "time",
+							"key": "since",
 							"value": "2018-11-11T23:15:44.532Z"
 						}
 					]
