@@ -1,16 +1,15 @@
 <template>
   <div id="app">
     <button type:="button" v-on:click="addSticky">Add Sticky</button>
-    <template v-for="sticky in stickys">
-      <StickyNote 
-        v-bind:id="sticky.id"
-        v-bind:title="sticky.title" 
-        v-bind:body="sticky.body"
-        v-bind:styleObject="sticky.styleObject"
-        :key="sticky.id"
-        v-on:update-app="updateApp"
-      ></StickyNote>
-    </template>
+    <StickyNote
+            v-for="sticky in stickys"
+            v-bind:id="sticky.id"
+            v-bind:title="sticky.title"
+            v-bind:body="sticky.body"
+            v-bind:styleObject="sticky.styleObject"
+            :key="sticky.id"
+            v-on:update-app="updateApp"
+    ></StickyNote>
   </div>
 </template>
 
