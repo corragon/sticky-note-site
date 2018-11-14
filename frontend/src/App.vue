@@ -30,14 +30,13 @@
     },
     methods: {
       addSticky: function () {
-        //const r = () => Math.floor(256 * Math.random());
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
           color += letters[Math.floor(Math.random() * 16)];
         }
 
-        var stickyId = ''+(Object.keys(this.stickys).length + 1);
+        const stickyId = ''+(Object.keys(this.stickys).length + 1);
         
         Vue.set(this.stickys, stickyId, {
           id: stickyId,
