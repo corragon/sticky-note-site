@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { generateToken } from './utils';
+import nanoid from 'nanoid';
 import { store } from './inMemoryStore';
 
 store.set('1234', { blah: 'yay' });
@@ -14,9 +14,7 @@ app.use(bodyParser.json());
 
 app.get('/newToken', (req, res) => {
   res.status(200);
-  res.send({
-    data: generateToken(8)
-  });
+  res.send({ data: nanoid(8) });
 });
 
 app.get('/tokens/:token', (req, res) => {
