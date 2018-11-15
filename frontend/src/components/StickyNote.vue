@@ -1,13 +1,17 @@
 <template>
   <div class="draggable basic-note" v-bind:style="dataStyleObject">
-    <div class="flex-wrapper">
-      <h1 class="sticky-title" v-if="!editTitle" v-on:click="titleEditHandler">{{ dataTitle }}</h1>
-      <input name="Title1"
+      <h1 class="sticky-title" 
+          v-if="!editTitle" 
+          v-on:click="titleEditHandler">{{ dataTitle }}</h1>
+      <input type="text"
+             name="Title1"
              class="sticky-title"
-             v-if="editTitle"
+             v-if="editTitle" 
              v-model="dataTitle"
              ref="textbox"
              v-on:blur="titleEditHandler"/>
+    <div class="close-button" v-on:click="deleteButtonHandler">X</div>
+    <div class="flex-wrapper">
     </div>
     <div class="flex-wrapper">
       <p class="sticky-body" v-if="!editBody" v-on:click="bodyEditHandler">{{ dataBody }}</p>
@@ -59,6 +63,9 @@
         });
         this.updateApp();
       },
+      deleteButtonHandler: function () {
+        this.$emit('delete-sticky', {id: this.id})
+      },
       updateApp: function() {
         this.$emit('update-app',{
           id: this.id,
@@ -73,7 +80,7 @@
 
   interact('.draggable').draggable({
     onmove: dragMoveListener,
-    ignoreFrom: 'textarea'
+    ignoreFrom: 'textarea,input'
   }).resizable({
       // resize from all edges and corners
       edges: { left: true, right: true, bottom: true, top: true },
@@ -147,6 +154,7 @@
 
   .sticky-title {
     margin: 10px;
+    margin-right: 40px;
     background-color: #FFFFFF20;
     color: #FFFFFF;
     font-size: 2em;
@@ -158,6 +166,8 @@
     padding: 2px;
     white-space: pre-wrap;
     text-align: left;
+    width: -moz-available;
+    width: -webkit-fill-available;
   }
 
   .sticky-body {
@@ -170,5 +180,13 @@
     padding: 2px;
     white-space: pre-wrap;
     text-align: left;
+  }
+  
+  .close-button {
+    color: #FFFFFF;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #FFFFFF20;
   }
 </style>

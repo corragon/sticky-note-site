@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <button type:="button" v-on:click="addSticky">Add Sticky</button>
-    <StickyNote
-            v-for="sticky in stickys"
-            v-bind:id="sticky.id"
-            v-bind:title="sticky.title"
-            v-bind:body="sticky.body"
-            v-bind:styleObject="sticky.styleObject"
-            :key="sticky.id"
-            v-on:update-app="updateApp"
-    ></StickyNote>
+    <button type:="button" 
+            v-on:click="addSticky">
+      Add Sticky
+    </button>
+    <StickyNote v-for="sticky in stickys"
+                v-bind:id="sticky.id"
+                v-bind:title="sticky.title"
+                v-bind:body="sticky.body"
+                v-bind:styleObject="sticky.styleObject"
+                :key="sticky.id"
+                v-on:update-app="updateApp"
+                v-on:delete-sticky="deleteSticky"></StickyNote>
   </div>
 </template>
 
@@ -49,6 +51,10 @@
             backgroundColor: color
           }
         });
+      },
+      deleteSticky: function (data) {
+        this.$delete(this.stickys, data.id)
+        console.log('sticky deleted')
       },
       updateApp: function (data) {
         Vue.set(this.stickys, data.id, {
