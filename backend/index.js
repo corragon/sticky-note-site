@@ -1,10 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import nanoid from 'nanoid';
-import { store } from './inMemoryStore';
-import dynamo from './dynamoStore';
+// import { store } from './inMemoryStore';
+import { store } from './dynamoStore';
 
-store.set('1234', { blah: 'yay' });
+// store.set('1234', { blah: 'yay' });
 
 const app = express();
 
@@ -14,16 +14,22 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/newToken', (req, res) => {
-  dynamo();
   res.status(200);
   res.send({ data: nanoid(8) });
 });
 
-app.get('/tokens/:token', (req, res) => {
+app.get('/tokens/:token', async (req, res) => {
   let { since } = req.query;
   console.log("Getting token with ", req.params.token);
-  res.status(200);
-  res.send(store.get(req.params.token, since));
+  store.get(req.params.token, since)
+    .then((result) => {
+      res.status(200);
+      res.send(result.Item);
+    })
+    .catch((err) => {
+      res.status(500);
+      res.send({});
+    })
 });
 
 app.post('/tokens/:token', (req, res) => {
