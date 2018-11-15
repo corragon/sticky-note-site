@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import nanoid from 'nanoid';
 import { store } from './inMemoryStore';
+import dynamo from './dynamoStore';
 
 store.set('1234', { blah: 'yay' });
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/newToken', (req, res) => {
+  dynamo();
   res.status(200);
   res.send({ data: nanoid(8) });
 });
