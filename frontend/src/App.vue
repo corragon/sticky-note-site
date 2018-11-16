@@ -36,12 +36,16 @@
         for (let i = 0; i < 6; i++) {
           color += letters[Math.floor(Math.random() * 16)];
         }
-
-        const stickyId = ''+(Object.keys(this.stickys).length + 1);
+        
+        const hashalpha = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+        let stickyId = ''
+        for (let i = 0; i < 6; i++) {
+          stickyId += hashalpha[Math.floor(Math.random() * 62)];
+        }
         
         Vue.set(this.stickys, stickyId, {
           id: stickyId,
-          title: 'Title',
+          title: stickyId,//'Title',
           body: 'Body',
           styleObject: {
             top: '0px',
