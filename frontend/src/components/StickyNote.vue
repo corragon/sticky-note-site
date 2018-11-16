@@ -1,20 +1,24 @@
 <template>
-  <div class="draggable basic-note">
-    <div class="flex-wrapper">
-      <h1 class="sticky-title" v-if="!editTitle" v-on:click="titleEditHandler">{{ title }}</h1>
-      <input name="Title1"
+  <div class="draggable basic-note" v-bind:style="dataStyleObject">
+      <h1 class="sticky-title" 
+          v-if="!editTitle" 
+          v-on:click="titleEditHandler">{{ dataTitle }}</h1>
+      <input type="text"
+             name="Title1"
              class="sticky-title"
-             v-if="editTitle"
-             v-model="title"
+             v-if="editTitle" 
+             v-model="dataTitle"
              ref="textbox"
              v-on:blur="titleEditHandler"/>
+    <div class="close-button" v-on:click="deleteButtonHandler">X</div>
+    <div class="flex-wrapper">
     </div>
     <div class="flex-wrapper">
-      <p class="sticky-body" v-if="!editBody" v-on:click="bodyEditHandler">{{ body }}</p>
+      <p class="sticky-body" v-if="!editBody" v-on:click="bodyEditHandler">{{ dataBody }}</p>
       <textarea name="Text1"
                 class="sticky-body"
                 v-if="editBody"
-                v-model="body"
+                v-model="dataBody"
                 ref="textbox"
                 v-on:blur="bodyEditHandler"
                 rows="5"></textarea>
@@ -24,41 +28,63 @@
 
 <script>
   import interact from 'interactjs'
+  import {EventBus} from '../EventBus.js'
 
   export default {
     name: "StickyNote",
     data() {
       return {
-        title: 'Title',
-        body: 'Hello Vue.js!',
         editTitle: false,
-        editBody: false
+        editBody: false,
+        dataTitle: this.title,
+        dataBody: this.body,
+        dataStyleObject: this.styleObject
       }
     },
+    props: [
+      'id',
+      'title',
+      'body',
+      'styleObject'
+    ],
+    created: function () {
+      EventBus.$on('stickyresizemove', this.updateApp);
+      console.log('listening');
+    },
     methods: {
-      titleEditHandler: function (e) {
-        console.log(e);
+      titleEditHandler: function () {
         this.editTitle = !this.editTitle;
         this.$nextTick(function () {
           if (this.editTitle)
             this.$refs.textbox.focus();
         });
+        this.updateApp();
       },
-      bodyEditHandler: function (e) {
-        console.log(e);
+      bodyEditHandler: function () {
         this.editBody = !this.editBody;
         this.$nextTick(function () {
           if (this.editBody)
             this.$refs.textbox.focus();
         });
+        this.updateApp();
       },
+      deleteButtonHandler: function () {
+        this.$emit('delete-sticky', {id: this.id})
+      },
+      updateApp: function() {
+        this.$emit('update-app',{
+          id: this.id,
+          title: this.dataTitle,
+          body: this.dataBody,
+          styleObject: this.dataStyleObject
+        })
+      }
     }
   }
 
-
   interact('.draggable').draggable({
     onmove: dragMoveListener,
-    ignoreFrom: 'textarea'
+    ignoreFrom: 'textarea,input'
   }).resizable({
       // resize from all edges and corners
       edges: { left: true, right: true, bottom: true, top: true },
@@ -92,6 +118,8 @@
 
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
+      
+      EventBus.$emit('stickyresizemove');
     });
 
   function dragMoveListener(event) {
@@ -108,6 +136,7 @@
     // update the position attributes
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
+    EventBus.$emit('stickyresizemove');
   }
 </script>
 
@@ -135,6 +164,7 @@
 
   .sticky-title {
     margin: 10px;
+    margin-right: 40px;
     background-color: #FFFFFF20;
     color: #FFFFFF;
     font-size: 2em;
@@ -146,6 +176,8 @@
     padding: 2px;
     white-space: pre-wrap;
     text-align: left;
+    width: -moz-available;
+    width: -webkit-fill-available;
   }
 
   .sticky-body {
@@ -158,5 +190,13 @@
     padding: 2px;
     white-space: pre-wrap;
     text-align: left;
+  }
+  
+  .close-button {
+    color: #FFFFFF;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #FFFFFF20;
   }
 </style>
