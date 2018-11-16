@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import nanoid from 'nanoid';
-// import { store } from './inMemoryStore';
-import { store } from './dynamoStore';
+import { store } from './inMemoryStore';
+// import { store } from './dynamoStore';
 
 // store.set('1234', { blah: 'yay' });
 

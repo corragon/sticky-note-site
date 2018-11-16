@@ -5,9 +5,9 @@ export const store = (function () {
   return {
     get: function (token, since) {
       if (since && !this.hasChanges(token, since)) {
-        return {};
+        return Promise.resolve({Item:{}});
       } else {
-        return tokens[token] || [];
+        return Promise.resolve({Item:(tokens[token] || [])});
       }
     },
     set: function (token, data) {
