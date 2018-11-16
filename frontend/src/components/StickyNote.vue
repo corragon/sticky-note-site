@@ -28,6 +28,7 @@
 
 <script>
   import interact from 'interactjs'
+  import {EventBus} from '../EventBus.js'
 
   export default {
     name: "StickyNote",
@@ -46,6 +47,10 @@
       'body',
       'styleObject'
     ],
+    created: function () {
+      EventBus.$on('stickyresizemove', this.updateApp);
+      console.log('listening');
+    },
     methods: {
       titleEditHandler: function () {
         this.editTitle = !this.editTitle;
@@ -76,7 +81,6 @@
       }
     }
   }
-
 
   interact('.draggable').draggable({
     onmove: dragMoveListener,
@@ -114,6 +118,8 @@
 
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
+      
+      EventBus.$emit('stickyresizemove');
     });
 
   function dragMoveListener(event) {
@@ -130,6 +136,7 @@
     // update the position attributes
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
+    EventBus.$emit('stickyresizemove');
   }
 </script>
 
