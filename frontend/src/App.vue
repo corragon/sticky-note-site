@@ -60,12 +60,7 @@
         console.log('sticky deleted')
       },
       updateApp: function (data) {
-        Vue.set(this.stickys, data.id, {
-          id: data.id,
-          title: data.title,
-          body: data.body,
-          styleObject: data.styleObject
-        });
+        Vue.set(this.stickys, data.id, data);
         console.log('app data updated')
       }
     }
