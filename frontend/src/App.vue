@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <button type:="button" 
-            v-on:click="addSticky">
+    <button v-on:click="addSticky">
       Add Sticky
     </button>
     <StickyNote v-for="sticky in stickys"
