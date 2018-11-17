@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 var AWS = require('aws-sdk');
 const credentials = new AWS.SharedIniFileCredentials();
 AWS.config.credentials = credentials;
@@ -19,6 +21,7 @@ export const store = (function () {
         .then(dynamoBlob => dynamoBlob.Item)
     },
     set: async function (token, data) {
+      data.lastChangedAt = moment().toISOString();
       const params = {
         TableName: 'sticky-notes',
         Item: {
