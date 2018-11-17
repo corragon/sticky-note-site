@@ -16,6 +16,7 @@ export const store = (function () {
         TableName: 'sticky-notes'
       };
       return dynamodb.get(params).promise()
+        .then(dynamoBlob => dynamoBlob.Item)
     },
     set: async function (token, data) {
       const params = {

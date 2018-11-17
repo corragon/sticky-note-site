@@ -24,7 +24,7 @@ app.get('/tokens/:token', async (req, res) => {
   store.get(req.params.token, since)
     .then((result) => {
       res.status(200);
-      res.send(result.Item);
+      res.send(result);
     })
     .catch((err) => {
       res.status(500);
