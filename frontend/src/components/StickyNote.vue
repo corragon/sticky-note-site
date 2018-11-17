@@ -1,16 +1,16 @@
 <template>
   <div class="draggable basic-note" v-bind:style="dataStyleObject">
-      <h1 class="sticky-title" 
-          v-if="!editTitle" 
+      <h1 class="sticky-title"
+          v-if="!editTitle"
           v-on:click="titleEditHandler">{{ dataTitle }}</h1>
       <input type="text"
              name="Title1"
              class="sticky-title"
-             v-if="editTitle" 
+             v-if="editTitle"
              v-model="dataTitle"
              ref="textbox"
              v-on:blur="titleEditHandler"/>
-    <div class="close-button" v-on:click="deleteButtonHandler">X</div>
+    <div class="close-button" v-on:click="deleteButtonHandler"></div>
     <div class="flex-wrapper">
     </div>
     <div class="flex-wrapper">
@@ -118,7 +118,7 @@
 
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
-      
+
       EventBus.$emit('stickyresizemove');
     });
 
@@ -191,12 +191,14 @@
     white-space: pre-wrap;
     text-align: left;
   }
-  
+
   .close-button {
-    color: #FFFFFF;
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 10px;
-    background-color: #FFFFFF20;
+    background-image: url(../assets/trashPic.png);
+    background-size: cover;
+    width: 25px;
+    height: 25px;
   }
 </style>
