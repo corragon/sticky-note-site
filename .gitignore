@@ -65,3 +65,6 @@ typings/
 
 # Notepad++ backup files
 *.bak
+
+# OS Files
+.DS_Store
