@@ -68,3 +68,6 @@ typings/
 
 # OS Files
 .DS_Store
+
+# Directory for non source project files
+Project
