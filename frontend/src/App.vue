@@ -61,7 +61,7 @@
       },
       updateApp: function (data) {
         Vue.set(this.stickys, data.id, data);
-        console.log('app data updated')
+        console.log('app data updated', data.id)
       }
     }
   }

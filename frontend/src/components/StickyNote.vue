@@ -1,5 +1,5 @@
 <template>
-  <div class="draggable basic-note" v-bind:style="dataStyleObject">
+  <div class="draggable basic-note" v-bind:style="dataStyleObject" v-bind:eventId="eventId">
       <h1 class="sticky-title"
           v-if="!editTitle"
           v-on:click="titleEditHandler">{{ dataTitle }}</h1>
@@ -27,13 +27,16 @@
 </template>
 
 <script>
+  import Vue from 'vue';
   import interact from 'interactjs'
   import {EventBus} from '../EventBus.js'
+  import nanoid from 'nanoid';
 
   export default {
     name: "StickyNote",
     data() {
       return {
+        eventId: nanoid(8),
         editTitle: false,
         editBody: false,
         dataTitle: this.title,
@@ -48,7 +51,7 @@
       'styleObject'
     ],
     created: function () {
-      EventBus.$on('stickyresizemove', this.updateApp);
+      EventBus.$on(`stickyresizemove${this.eventId}`, this.updateApp);
       console.log('listening');
     },
     methods: {
@@ -119,7 +122,7 @@
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
 
-      EventBus.$emit('stickyresizemove');
+      EventBus.$emit(`stickyresizemove${target.getAttribute('eventId')}`);
     });
 
   function dragMoveListener(event) {
@@ -136,7 +139,8 @@
     // update the position attributes
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
-    EventBus.$emit('stickyresizemove');
+
+    EventBus.$emit(`stickyresizemove${target.getAttribute('eventId')}`);
   }
 </script>
 
