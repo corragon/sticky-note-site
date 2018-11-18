@@ -85,10 +85,10 @@
 
   interact('.draggable').draggable({
     onmove: function (event) {
-      var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+      const { target } = event;
+      // keep the dragged position in the data-x/data-y attributes
+      const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+      const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
       // translate the element
       target.style.webkitTransform =
@@ -110,9 +110,9 @@
       },
     })
     .on('resizemove', function (event) {
-      var target = event.target,
-        x = (parseFloat(target.getAttribute('data-x')) || 0),
-        y = (parseFloat(target.getAttribute('data-y')) || 0);
+      const { target } = event;
+      let x = (parseFloat(target.getAttribute('data-x')) || 0);
+      let y = (parseFloat(target.getAttribute('data-y')) || 0);
 
       // update the element's style
       target.style.width = event.rect.width + 'px';
@@ -129,7 +129,7 @@
       target.setAttribute('data-y', y);
     })
     .on('up', function (event) {
-      var target = event.target;
+      const { target } = event;
       if (target.className.includes("basic-note")) {
         EventBus.$emit(`stickyresizemove${target.getAttribute('eventId')}`);
       }
