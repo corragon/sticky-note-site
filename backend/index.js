@@ -19,9 +19,11 @@ app.get('/newToken', (req, res) => {
 });
 
 app.get('/tokens/:token', async (req, res) => {
-  let { since } = req.query;
-  console.log("Getting token with ", req.params.token);
-  store.get(req.params.token, since)
+  const { since } = req.query;
+  const { token } = req.params;
+
+  console.log("Getting token with ", token);
+  store.get(token, since)
     .then((result) => {
       res.status(200);
       res.send(result);
@@ -33,12 +35,15 @@ app.get('/tokens/:token', async (req, res) => {
 });
 
 app.post('/tokens/:token', (req, res) => {
-  if (!req.body.data) {
+  const { data } = req.body;
+  const { token } = req.params;
+
+  if (!data) {
     res.status(404);
     res.send("Error: Requires data on body!");
   }
-  console.log(`POST on /tokens/${req.params.token}`, req.body.data);
-  store.set(req.params.token, req.body.data);
+  console.log(`POST on /tokens/${token}`, data);
+  store.set(token, data);
   res.status(200);
   res.send();
 });
