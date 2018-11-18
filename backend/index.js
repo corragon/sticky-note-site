@@ -14,8 +14,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/newToken', (req, res) => {
-  res.status(200);
-  res.send({ data: nanoid(8) });
+  res.status(200).send({ data: nanoid(8) });
 });
 
 app.get('/tokens/:token', async (req, res) => {
@@ -25,12 +24,10 @@ app.get('/tokens/:token', async (req, res) => {
   console.log("Getting token with ", token);
   store.get(token, since)
     .then((result) => {
-      res.status(200);
-      res.send(result);
+      res.status(200).send(result);
     })
     .catch((err) => {
-      res.status(500);
-      res.send({});
+      res.status(500).send({});
     })
 });
 
@@ -39,13 +36,11 @@ app.post('/tokens/:token', (req, res) => {
   const { token } = req.params;
 
   if (!data) {
-    res.status(404);
-    res.send("Error: Requires data on body!");
+    res.status(404).send("Error: Requires data on body!");
   }
   console.log(`POST on /tokens/${token}`, data);
   store.set(token, data);
-  res.status(200);
-  res.send();
+  res.status(200).send();
 });
 
 app.listen(3000, () => console.log('Express app listening on port 3000'));
