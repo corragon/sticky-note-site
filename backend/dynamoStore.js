@@ -3,7 +3,7 @@ import moment from 'moment';
 var AWS = require('aws-sdk');
 const credentials = new AWS.SharedIniFileCredentials();
 AWS.config.credentials = credentials;
-let dynamodb = new AWS.DynamoDB.DocumentClient({
+const dynamodb = new AWS.DynamoDB.DocumentClient({
   apiVersion: '2012-08-10',
   region: 'us-east-2',
 });
