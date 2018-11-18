@@ -1,15 +1,15 @@
 <template>
   <div class="draggable basic-note" v-bind:style="dataStyleObject" v-bind:eventId="eventId">
-      <h1 class="sticky-title"
-          v-if="!editTitle"
-          v-on:click="titleEditHandler">{{ dataTitle }}</h1>
-      <input type="text"
-             name="Title1"
-             class="sticky-title"
-             v-if="editTitle"
-             v-model="dataTitle"
-             ref="textbox"
-             v-on:blur="titleEditHandler"/>
+    <h1 class="sticky-title"
+        v-if="!editTitle"
+        v-on:click="titleEditHandler">{{ dataTitle }}</h1>
+    <input type="text"
+           name="Title1"
+           class="sticky-title"
+           v-if="editTitle"
+           v-model="dataTitle"
+           ref="textbox"
+           v-on:blur="titleEditHandler"/>
     <div class="close-button" v-on:click="deleteButtonHandler"></div>
     <div class="flex-wrapper">
     </div>
@@ -27,9 +27,8 @@
 </template>
 
 <script>
-  import Vue from 'vue';
   import interact from 'interactjs'
-  import {EventBus} from '../EventBus.js'
+  import { EventBus } from '../EventBus.js'
   import nanoid from 'nanoid';
 
   export default {
@@ -71,10 +70,10 @@
         this.updateApp();
       },
       deleteButtonHandler: function () {
-        this.$emit('delete-sticky', {id: this.id})
+        this.$emit('delete-sticky', { id: this.id })
       },
-      updateApp: function() {
-        this.$emit('update-app',{
+      updateApp: function () {
+        this.$emit('update-app', {
           id: this.id,
           title: this.dataTitle,
           body: this.dataBody,
@@ -85,17 +84,25 @@
   }
 
   interact('.draggable').draggable({
-    onmove: dragMoveListener,
+    onmove: function (event) {
+      var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+      // translate the element
+      target.style.webkitTransform =
+        target.style.transform =
+          'translate(' + x + 'px, ' + y + 'px)';
+
+      // update the position attributes
+      target.setAttribute('data-x', x);
+      target.setAttribute('data-y', y);
+    },
     ignoreFrom: 'textarea,input'
   }).resizable({
       // resize from all edges and corners
       edges: { left: true, right: true, bottom: true, top: true },
-
-      // keep the edges inside the parent
-      /*restrictEdges: {
-        outer: 'parent',
-        endOnly: true,
-      },*/
 
       // minimum size
       restrictSize: {
@@ -128,21 +135,7 @@
       }
     });
 
-  function dragMoveListener(event) {
-    var target = event.target,
-      // keep the dragged position in the data-x/data-y attributes
-      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-    // translate the element
-    target.style.webkitTransform =
-      target.style.transform =
-        'translate(' + x + 'px, ' + y + 'px)';
-
-    // update the position attributes
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-  }
 </script>
 
 <style scoped>
