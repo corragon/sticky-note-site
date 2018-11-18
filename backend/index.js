@@ -4,8 +4,6 @@ import nanoid from 'nanoid';
 import { store } from './inMemoryStore';
 // import { store } from './dynamoStore';
 
-// store.set('1234', { blah: 'yay' });
-
 const app = express();
 
 app.use(bodyParser.urlencoded({
@@ -27,6 +25,7 @@ app.get('/tokens/:token', async (req, res) => {
       res.status(200).send(result);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send({});
     })
 });
