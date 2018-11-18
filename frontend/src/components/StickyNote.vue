@@ -121,8 +121,12 @@
 
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
-
-      EventBus.$emit(`stickyresizemove${target.getAttribute('eventId')}`);
+    })
+    .on('up', function (event) {
+      var target = event.target;
+      if (target.className == "basic-note") {
+        EventBus.$emit(`stickyresizemove${target.getAttribute('eventId')}`);
+      }
     });
 
   function dragMoveListener(event) {
@@ -139,8 +143,6 @@
     // update the position attributes
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
-
-    EventBus.$emit(`stickyresizemove${target.getAttribute('eventId')}`);
   }
 </script>
 
