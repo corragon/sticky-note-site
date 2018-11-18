@@ -52,7 +52,6 @@
     ],
     created: function () {
       EventBus.$on(`stickyresizemove${this.eventId}`, this.updateApp);
-      console.log('listening');
     },
     methods: {
       titleEditHandler: function () {
@@ -124,7 +123,7 @@
     })
     .on('up', function (event) {
       var target = event.target;
-      if (target.className == "basic-note") {
+      if (target.className.includes("basic-note")) {
         EventBus.$emit(`stickyresizemove${target.getAttribute('eventId')}`);
       }
     });
