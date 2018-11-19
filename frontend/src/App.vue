@@ -16,6 +16,7 @@
 
 <script>
   import StickyNote from './components/StickyNote';
+  import generate from 'nanoid/generate';
   import Vue from 'vue';
 
   export default {
@@ -31,17 +32,11 @@
     methods: {
       addSticky: function () {
         const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        
-        const hashalpha = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-        let stickyId = ''
-        for (let i = 0; i < 6; i++) {
-          stickyId += hashalpha[Math.floor(Math.random() * 62)];
-        }
-        
+        const  color = `#${generate(letters, 6)}`;
+
+        const hashalpha = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const stickyId = generate(hashalpha, 6);
+
         Vue.set(this.stickys, stickyId, {
           id: stickyId,
           title: stickyId,//'Title',
