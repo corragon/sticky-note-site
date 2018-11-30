@@ -28,6 +28,5 @@
     "opn-cli": "^3.1.0"
   },
   "dependencies": {
-    "nanoid": "^2.0.0"
   }
 }
